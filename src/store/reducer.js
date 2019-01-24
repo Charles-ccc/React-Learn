@@ -1,4 +1,4 @@
-import {CHANGE_INPUT, ADD_TODOITEM, DELETE_TODOITEM} from './actionTypes'
+import {CHANGE_INPUT, ADD_TODOITEM, DELETE_TODOITEM, INIT_LIST_ACTION } from './actionTypes'
 
 // state store仓库里存的数据
 const defaultState = {
@@ -21,6 +21,8 @@ export default (state = defaultState, action) => {
       const newState = JSON.parse(JSON.stringify(state))
       newState.list.splice(action.index, 1) // 删除下标对应的内容
       return newState
+    case INIT_LIST_ACTION:
+    return { ...state, list: action.data }
     default:
       return state
   }
