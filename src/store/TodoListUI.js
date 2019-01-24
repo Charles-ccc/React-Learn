@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react' // 无状态组件不需要{Component}
 import { Input, Button, List } from 'antd'
 
 // UI组件如果只负责渲染，那么是可以转为无状态组件的
@@ -19,7 +19,7 @@ const TodoListUI = (props) => {
         style={{width: '300px', marginTop: '20px', marginLeft: '20px'}} 
         bordered 
         dataSource={props.list} 
-        renderItem={(item, index) => (<List.Item onClick={(index) => {props.handleItemDelete(index)}}>{item}</List.Item>)} 
+        renderItem={(item, index) => (<List.Item onClick={() => {props.handleItemDelete(index)}}>{item}</List.Item>)} 
       />
     </div>
   )
