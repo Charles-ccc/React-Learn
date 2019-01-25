@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import 'antd/dist/antd.css'
 import store from './store/index'
-import { getInputChangeAction, getAddItemAction, getDeleteItemAction, getTodoList } from './store/actionCreators'
+import { getInputChangeAction, getAddItemAction, getDeleteItemAction, getInitList } from './store/actionCreators'
 import TodoListUI from './store/TodoListUI'
+// import axios from 'axios'
 
 class TodoList extends Component {
   constructor(props) {
@@ -28,15 +29,19 @@ class TodoList extends Component {
 
   
   componentDidMount () {
-    const action = getTodoList()
-    store.dispatch(action) // action函数会自动执行
+    // redux-thunk 方法
+    // const action = getTodoList()
+    // store.dispatch(action) // action函数会自动执行
 
+    // redux-saga 方法
+    const action = getInitList()
+    store.dispatch(action) // dispatch之后，reducer和sagas都能接收到action
   // 在action中完成中间件 异步 
-  //   axios.get('/todolist.json').then((res) => {
-  //     const data = res.data
-  //     const action = initListAction(data)
-  //     store.dispatch(action)
-  //   })
+    // axios.get('/todolist.json').then((res) => {
+    //   const data = res.data
+    //   const action = initListAction(data)
+    //   store.dispatch(action)
+    // })
   }
 
   handleInputChange(e) {
